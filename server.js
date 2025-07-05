@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api/users", require("./routes/user.routes"));
+app.use("/users", require("./routes/user.routes"));
 
 app.post('/users', (req, res) => {
   // ...création de l'utilisateur...
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("API GamerConnect OK");
 });
 // Démarrage du serveur
-const db = require("./config/db");
+const db = require("./db");
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`API listening on port ${PORT}`));

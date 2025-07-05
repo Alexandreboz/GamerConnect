@@ -1,4 +1,4 @@
-const db = require("../config/db");
+const db = require("../db");
 
 const getAllUsers = (callback) => {
   db.query("SELECT * FROM Utilisateurs", callback);
