@@ -9,13 +9,6 @@ app.use(express.json());
 // Routes
 app.use("/users", require("./routes/user.routes"));
 
-app.post('/users', (req, res) => {
-  // ...création de l'utilisateur...
-  res.status(201).json({ message: 'Utilisateur créé' });
-});
-app.get("/", (req, res) => {
-  res.send("API GamerConnect OK");
-});
 // Démarrage du serveur
 const db = require("./db");
 

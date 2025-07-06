@@ -2,14 +2,14 @@ const db = require("../db");
 const User = require("../models/user.model"); // ✅ Ajouté ici
 
 exports.createUser = (req, res) => {
-  const { nom, prenom, email, mot_de_passe, plateformes_liees } = req.body;
+  const { nom, prenom, pseudo, email, mot_de_passe, plateformes_liees } = req.body;
 
-  if (!nom || !prenom || !email || !mot_de_passe) {
+  if (!nom || !prenom || !pseudo || !email || !mot_de_passe) {
     return res.status(400).json({ error: "Champs requis manquants." });
   }
 
   // Utilisation du modèle User
-  User.createUser({ nom, prenom, email, mot_de_passe, plateformes_liees }, (err, result) => {
+  User.createUser({ nom, prenom,pseudo, email, mot_de_passe, plateformes_liees }, (err, result) => {
     if (err) {
       console.error("Erreur lors de la création de l'utilisateur :", err);
       return res.status(500).json({ error: "Erreur serveur lors de la création." });
@@ -25,8 +25,8 @@ exports.getAllUsers = (req, res) => {
   });
 };
 
-exports.getUserById = (req, res) => {
-  User.getUserById(req.params.id, (err, result) => {
+exports.getUserBypseudo = (req, res) => {
+  User.getUserBypseudo(req.params.id, (err, result) => {
     if (err) return res.status(500).json({ error: "Erreur serveur" });
     if (result.length === 0) return res.status(404).json({ error: "Utilisateur non trouvé" });
     res.json(result[0]);
@@ -34,7 +34,7 @@ exports.getUserById = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-  const { nom, prenom, email, plateformes_liees } = req.body;
+  const { nom, prenom,  email, plateformes_liees } = req.body;
   db.query(
     "UPDATE Utilisateurs SET nom = ?, prenom = ?, email = ?, plateformes_liees = ? WHERE id_utilisateur = ?",
     [nom, prenom, email, plateformes_liees, req.params.id],
