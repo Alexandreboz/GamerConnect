@@ -8,6 +8,7 @@ app.use(express.json());
 
 // Routes
 app.use("/users", require("./routes/user.routes"));
+app.use("/evenements", require("./routes/evenement.routes"));
 
 // Démarrage du serveur
 const db = require("./db");

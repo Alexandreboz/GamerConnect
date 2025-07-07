@@ -25,8 +25,18 @@ exports.getAllUsers = (req, res) => {
   });
 };
 
+exports.getUserById = (req, res) => {
+  const id = req.params.id;
+  User.getUserById(id, (err, result) => {
+    if (err) return res.status(500).json({ error: "Erreur serveur" });
+    if (result.length === 0) return res.status(404).json({ error: "Utilisateur non trouvé" });
+    res.json(result[0]);
+  });
+};
+
 exports.getUserBypseudo = (req, res) => {
-  User.getUserBypseudo(req.params.id, (err, result) => {
+  const pseudo = req.params.pseudo;
+  User.getUserBypseudo(pseudo, (err, result) => {
     if (err) return res.status(500).json({ error: "Erreur serveur" });
     if (result.length === 0) return res.status(404).json({ error: "Utilisateur non trouvé" });
     res.json(result[0]);
