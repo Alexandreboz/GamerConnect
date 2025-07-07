@@ -15,4 +15,9 @@ const getMessagesBetweenUsers = (senderId, receiverId, callback) => {
   );
 };
 
-module.exports = { getAllMessages, getMessagesBetweenUsers };
+
+
+module.exports = {
+  getAllMessages,
+  getMessagesBetweenUsers
+};
